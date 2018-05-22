@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "a1e34c0a-7ca8-490c-94a5-de881bf977a3",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "icon_baoji": {
+      "ver": "1.0.3",
+      "uuid": "87159499-ec42-47e2-b3cb-fe0f9802079a",
+      "rawTextureUuid": "a1e34c0a-7ca8-490c-94a5-de881bf977a3",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 70,
+      "height": 70,
+      "rawWidth": 70,
+      "rawHeight": 70,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "2a384c5d-91e4-4a7b-960d-dac23ce5392c",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "icon_nuqi": {
+      "ver": "1.0.3",
+      "uuid": "8c103941-7db0-4055-908d-91a684033f93",
+      "rawTextureUuid": "2a384c5d-91e4-4a7b-960d-dac23ce5392c",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 70,
+      "height": 70,
+      "rawWidth": 70,
+      "rawHeight": 70,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

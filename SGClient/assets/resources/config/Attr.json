@@ -1,0 +1,1 @@
+[{"id":1,"key":"hp","name":"血量"},{"id":2,"key":"phyAtk","name":"物理攻击力"},{"id":3,"key":"phydef","name":"物理防御力"},{"id":4,"key":"magicAtk","name":"魔法攻击力"},{"id":5,"key":"magicAtk","name":"魔法防御力"},{"id":6,"key":"crit","name":"暴击率"},{"id":7,"key":"atkSpeed","name":"攻速"},{"id":8,"key":"block","name":"格挡率"}]

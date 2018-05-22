@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "818a3d90-714c-4f38-a321-ad697d0cb205",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "icon_gedang": {
+      "ver": "1.0.3",
+      "uuid": "aaedc98e-9791-47df-9684-fc42ad3719a8",
+      "rawTextureUuid": "818a3d90-714c-4f38-a321-ad697d0cb205",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 70,
+      "height": 70,
+      "rawWidth": 70,
+      "rawHeight": 70,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
