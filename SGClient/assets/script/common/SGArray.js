@@ -19,14 +19,18 @@ var SGArray = {
 	dedupe:function(array) {
 	  return [...new Set(array)];
 	},
-	// 替换数组内index的值，默认会删除当前index位置的元素
+	// 替换数组内index的值，默认会删除当前index位置的元素(注意数组下标从0开始)
 	insert:function (array,index,item,count) {
 		var c = count || 1
 		array.splice(index, c, item);
 	},
-	// 移除数组里面的元素
+	// 移除数组里面的元素(注意数组下标从0开始)
 	remove:function (array,index) {
 		array.splice(index,1);
+	},
+	// 数组替换位置(注意数组下标从0开始)
+	conver:function (array,f,t) {
+		array.splice(f, 1, array.splice(t, 1, array[f]));
 	},
 	// 深拷贝
 	deepCopy:function (obj) {

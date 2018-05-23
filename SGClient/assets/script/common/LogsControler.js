@@ -10,7 +10,7 @@ var LogsControler = {
         for (var i = 0, l = arguments.length; i < l; i++) {
             args.push(arguments[i]);
         }
-        cc.log("echo:",args.join(","));
+        cc.log("echo:",args.join(""));
     },
     // 打印错误警告
     echoError:function () {

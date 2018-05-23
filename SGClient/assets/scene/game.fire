@@ -5068,7 +5068,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Nd_Touch1",
+    "_name": "Nd_Touch4",
     "_objFlags": 0,
     "_parent": {
       "__id__": 147
@@ -5318,7 +5318,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Nd_Touch2",
+    "_name": "Nd_Touch5",
     "_objFlags": 0,
     "_parent": {
       "__id__": 147
@@ -5568,7 +5568,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Nd_Touch3",
+    "_name": "Nd_Touch6",
     "_objFlags": 0,
     "_parent": {
       "__id__": 147
@@ -5818,7 +5818,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Nd_Touch4",
+    "_name": "Nd_Touch1",
     "_objFlags": 0,
     "_parent": {
       "__id__": 147
@@ -6068,7 +6068,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Nd_Touch5",
+    "_name": "Nd_Touch2",
     "_objFlags": 0,
     "_parent": {
       "__id__": 147
@@ -6318,7 +6318,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Nd_Touch6",
+    "_name": "Nd_Touch3",
     "_objFlags": 0,
     "_parent": {
       "__id__": 147

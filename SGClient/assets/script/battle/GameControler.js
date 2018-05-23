@@ -15,7 +15,7 @@ var GameControler = function (battleInfo) {
 	var _callFuncArr = [];//回调队列
 	var _callFuncArrCache = [];//回调队列缓存
 	var _isCallFuncing = false;//是否在进行队列遍历
-	this.atkModelArr = [];//战斗中的攻击序列
+	var _atkModelArr = [];//战斗中的攻击序列
 	this.handIdx = 0;//操作序列数[自增，用于记录当前执行到的步骤]
 	this.levelInfo = new SG.LevelInfo(battleInfo,this);
 	this.server = new SG.BattleServer(this);
@@ -81,6 +81,18 @@ var GameControler = function (battleInfo) {
 	this.getHandCardArrByCamp=function (camp) {
 		return _handCardArr[camp];
 	};
+	// 获取阵营上有角色数组
+	this.getHeroCampArr = function (camp) {
+		var cArr = _campArr[camp];
+		var tmpArr = [];
+		for (var i = 0; i < _campArr[camp].length; i++) {
+			var heroModel = _campArr[camp][i];
+			if (heroModel) {
+				tmpArr.push(heroModel)
+			};
+		};
+		return tmpArr;
+	}
 	// 获取阵营战场上可上牌的位置(排除破路的位置TODO)
 	this.getEmptyPosByCamp = function (camp) {
 		var cArr = _campArr[camp];
@@ -103,15 +115,16 @@ var GameControler = function (battleInfo) {
 			G_EVENT.emit(SG.SGEvent.BATTLE_UP_HERO,modelHero);
 		};
 	};
-	// 每上阵一个人、死亡一个人、减攻速的buff
-	// 做一次排序,然后赋值给攻击序列
-	this.sortSkill = function () {
-		var tmpArr = []
-		for (var i = 0; i < _campArr.length; i++) {
-			for (var j = 0; j < _campArr[i].length; j++) {
-				var modelHero = _campArr[i][j];
-				if (modelHero) {
-					tmpArr.push(modelHero);
+	// 攻击序列排序
+	this.sortSkill = function (tmpArr) {
+		if (!tmpArr) {
+			tmpArr =[];
+			for (var i = 0; i < _campArr.length; i++) {
+				for (var j = 0; j < _campArr[i].length; j++) {
+					var modelHero = _campArr[i][j];
+					if (modelHero) {
+						tmpArr.push(modelHero);
+					};
 				};
 			};
 		};
@@ -121,8 +134,26 @@ var GameControler = function (battleInfo) {
 			var a2 = b.getBattleDataByKey(SG.Fight.battleKey.atkSpeed);
 			return a1 - a2;
 		})
-		this.atkModelArr = tmpArr;
+		_atkModelArr = tmpArr;
 	};
+	// 当刚上阵一个角色的时候，需要修改这个攻击序列
+	// 每上阵一个人、死亡一个人、减攻速的buff
+	// 做一次排序,然后赋值给攻击序列
+	this.updateAtkModel = function () {
+		var tmpArr = _atkModelArr;
+		this.sortSkill(tmpArr);
+	}
+	// 获取应该上去攻击的角色
+	this.getAttackHeroModel = function () {
+		if (_atkModelArr.length == 0) {
+			//当攻击序列结束时候，重新获取攻击序列(这样保证没人都攻击一次才会开始新回合)
+			SG.LogsControler.echo("重新开始一回合攻击序列");
+			this.sortSkill();
+		};
+		var atkHeroModel = _atkModelArr[0];
+		SG.SGArray.remove(_atkModelArr,0);
+		return atkHeroModel;
+	}
 	// 获取战场上序列
 	this.getCampArr = function () {
 		return _campArr;
@@ -131,7 +162,10 @@ var GameControler = function (battleInfo) {
 	this.getDiedArr = function () {
 		return _diedArr;
 	}
-	// 获取攻击序列
+	// 真正开始战斗
+	this.startRealBattle = function () {
+		this.logic.doFightAi();
+	}
 	this.onExitBattle = function () {
 		// SG.LogsControler.echo("退出战斗:发事件让UI处理");
 		if (!SERVICE_DUMMY) {

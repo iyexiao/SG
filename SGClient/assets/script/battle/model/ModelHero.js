@@ -25,9 +25,29 @@ var ModelHero = function (data,exData,controler) {
 		var skill = this.getCurrentSkill();
 		var tmpArr = {sType:SG.Fight.battleTrigger.atkStart,atker:this,skill:skill}
 		this.controler.logic.doBattleTriggerFunc(tmpArr);//攻击触发前
-		// 攻击TODO
+		// 获取攻击对象
+		var camp = this.camp == SG.Fight.camp_1 ? SG.Fight.camp_2 : SG.Fight.camp_1;
+		var campArr = this.controler.getHeroCampArr(camp);
+		var targetArr  = SG.AttackChooseType.getSkillCanAttackPos(this,skill,campArr);
+		// 攻击对象承受伤害
+		var cfg = SG.GameData.getConfigName();
+		if (!skill._data.atk) {
+			SG.LogsControler.echoError("改技能没有攻击包",skill.sid);
+		};
+		var atkData = SG.GameData.getConfigByNameId(cfg.Attack,skill._data.atk);
+		this.doRealAttack(targetArr,atkData,skill);
 		return skill.getSkillFrame();
 	};
+	// 真正的执行攻击
+	this.doRealAttack = function (chooseArr,atkData,skill) {
+		for (var key in chooseArr) {
+			var targetModel = chooseArr[key];
+			// SG.LogsControler.dump(targetModel._data,"what???");
+		SG.LogsControler.echo(this.camp,"阵营",this.posIdx,"位置的",this.hId,"角色",
+			"使用",skill.sid,"技能","攻击 ",targetModel.camp,"阵营的",
+			targetModel.posIdx,"位置",targetModel.hId,"玩家");
+		};
+	}
 }
 
 module.exports = ModelHero;

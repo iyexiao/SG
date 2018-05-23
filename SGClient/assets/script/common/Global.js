@@ -13,6 +13,7 @@ var _files = [
 	"battle/BattleServer",
 	"battle/LogicControler",
 	"battle/GameControler",
+	"battle/AttackChooseType",
 	"common/LogsControler",
 	"common/GameData",
 	"common/FuncUtil",

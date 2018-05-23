@@ -42,11 +42,15 @@ var LogicControler = function (controler) {
 	};
 	// 做攻击序列ai
 	this.doFightAi = function () {
-		var fightHero = _controler.atkModelArr[1];
+		var fightHero = _controler.getAttackHeroModel();//获取将要攻击的人
 		var _frame = fightHero.doAttack();
 		var skill = fightHero.getCurrentSkill();
 		_controler.pushOneCallFunc(_frame,SG.Fight.callFuncType.logic,
 			"onAttackComplete",{heroModel:fightHero,skill:skill});
+		cc.log("角色上去攻击",fightHero.camp,fightHero.posIdx,fightHero.hId);
+		if (!SERVICE_DUMMY) {
+			G_EVENT.emit(SG.SGEvent.BATTLE_HERO_ATTACK,{heroModel:fightHero});
+		};
 	};
 	// 攻击结束
 	this.onAttackComplete = function (params) {
@@ -59,7 +63,6 @@ var LogicControler = function (controler) {
 						skill:params.skill}
 		this.doBattleTriggerFunc(tmpArr);//攻击触发前
 
-		// 攻击结束后直接是到下一个人攻击
 		this.doFightAi();
 	}
 	// 执行某个时机行为，触发事件
@@ -98,6 +101,7 @@ var LogicControler = function (controler) {
 				if (_gameStep == SG.Fight.gameStep.ready) {
 					//此时上阵的角色开始攻击
 					_controler.updateGameState(SG.Fight.gameStep.battle);
+					_controler.startRealBattle();
 				};
 			};
 		};

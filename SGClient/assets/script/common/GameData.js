@@ -10,6 +10,8 @@ var _configArr ={
     Robot:"Robot",
     Attr:"Attr",
     Skill:"Skill",
+    Filter:"Filter",
+    Attack:"Attack",
 };
 var _configs = {};
 var GameData = {

@@ -70,7 +70,9 @@ var ModelBasic = function (data,exData,controler) {
 		if (!giveSkill) {
 			giveSkill = _skills[SG.Fight.skillType.small];
 		};
-		_currSkill = SG.SGArray.deepCopy(giveSkill);
+		// _currSkill = SG.SGArray.deepCopy(giveSkill);
+		// _currSkill =  new SG.ObjectSkill(giveSkill.sid,this);
+		_currSkill = giveSkill;
 		return _currSkill;
 	};
 	// 重置技能(攻击结束以后会重置)
