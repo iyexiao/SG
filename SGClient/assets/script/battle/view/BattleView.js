@@ -25,23 +25,24 @@ cc.Class({
         });
         // 隐藏一开始不需要显示的ui
         this._touchArr = [];
-        for (var i = 0; i < 6; i++) {
-            var node = cc.find("Canvas/Nd_Battle/Nd_Hero_0/Nd_Touch"+(i+1));
-            node.active = false
-            node.sp1 = node.getChildByName("Sp_1");
-            node.sp2 = node.getChildByName("Sp_2");
-            this._touchArr.push(node);
+        for (var i = 0; i < 2; i++) {
+            for (var j = 1; j <= 6; j++) {
+                var node = cc.find("Canvas/Nd_Battle/Nd_Touch_"+i+"_"+j);
+                node.active = false;
+                // 我方
+                if (i == 0) {
+                    node.sp1 = node.getChildByName("Sp_1");
+                    node.sp2 = node.getChildByName("Sp_2");
+                    this._touchArr.push(node);
+                };
+            };
         };
-        // 隐藏地方布阵
-        for (var i = 0; i < 6; i++) {
-            var node = cc.find("Canvas/Nd_Battle/Nd_Hero_1/Nd_Touch"+(i+1));
-            node.active = false
-        };
-        this._selectCard = cc.find("Canvas/Nd_Battle/Nd_Hero_0/Nd_Select_Card");
+        this._selectCard = cc.find("Canvas/Nd_Battle/Nd_Select_Card");
         this._selectCard.active = false;
-        this._touchNode = cc.find("Canvas/Nd_Battle/Nd_Hero_0");//我方布阵的状态
-        this._wSize = this._touchNode.getContentSize();
+        this._touchNode = cc.find("Canvas/Nd_Battle");//我方布阵的状态
+        this._wSize = cc.size(640,400);
         this._nSize = this._selectCard.getContentSize();
+        this._tmpY = this._selectCard.y;//最小Y值
     },
 
     start () {
@@ -104,8 +105,10 @@ cc.Class({
         }else if(x > x2 ){
             x = x2;
         }
-        var y1 = (-this._wSize.height + this._nSize.height)/2;
-        var y2 = (this._wSize.height - this._nSize.height)/2;
+        // var y1 = (-this._wSize.height + this._nSize.height)/2;
+        // var y2 = (this._wSize.height - this._nSize.height)/2;
+        var y1 = this._tmpY;
+        var y2 = this._tmpY + this._wSize.height;
         if (y < y1 ) {
             y = y1;
         }else if(y > y2){

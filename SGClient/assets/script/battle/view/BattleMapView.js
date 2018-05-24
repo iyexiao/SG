@@ -11,15 +11,12 @@ cc.Class({
 
     onLoad () {
     	this._posArr = [[],[]];//底牌坐标
-    	this._pNode = [];//底牌父节点
+    	this._pNode = cc.find("Canvas/Nd_Battle");;//底牌父节点
     	for (var i = 0; i <= 1; i++) {
     		for (var j = 1; j <=6; j++) {
-    			var str = "Canvas/Nd_Battle/Nd_Hero_"+i+"/Nd_Touch"+j;
-    			var tNode = cc.find(str);
-    			this._posArr[i].push(cc.p(tNode.x,tNode.y));
+    			var tNode = cc.find("Canvas/Nd_Battle/Nd_Touch_"+i+"_"+j);
+                this._posArr[i].push(tNode);
     		};
-    		var tmpNode = cc.find("Canvas/Nd_Battle/Nd_Hero_"+i);
-    		this._pNode.push(tmpNode);
     	};
     	//阵上的角色
     	this.HeroArr = [[null,null,null,null,null,null],[null,null,null,null,null,null]];
@@ -40,13 +37,13 @@ cc.Class({
         var staDB = modelHero._data.getStaCfg();
         var camp = modelHero.camp;
         var posIdx = modelHero.posIdx;
-        var pos = this._posArr[camp][posIdx];
+        var tmpNode = this._posArr[camp][posIdx];
         var self = this;
         SG.FuncUtil.loadPrefab("prefab/battle/Battle_Hero",function(pAsset) {
             var pNode = cc.instantiate(pAsset);
-            pNode.parent = self._pNode[camp];
-            pNode.x = pos.x;
-            pNode.y = pos.y;
+            pNode.parent = self._pNode;
+            pNode.x = tmpNode.x;
+            pNode.y = tmpNode.y;
             var _script = pNode.getComponent("BattleHeroTmpl");
             _script.updateData(staDB);
 
