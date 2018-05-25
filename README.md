@@ -1,26 +1,29 @@
 
 一个基于三国的H5卡牌游戏
-## 关于配置表excel  
-###[win]  
-	1.安装python
-	2.安装xlrd插件https://pypi.python.org/pypi/xlrd (进入对应目录执行python setup.py install)
-	3.安装openpyxl插件https://pypi.python.org/pypi/openpyxl
-###[win/mac]  
-    3.运行python excel2json.py excel json
+## 关于配置表excel   
+### [win]  
+	1.安装python   
+	2.安装xlrd插件https://pypi.python.org/pypi/xlrd (进入对应目录执行python setup.py install)   
+	3.安装openpyxl插件https://pypi.python.org/pypi/openpyxl   
+### [win/mac]  
+    3.运行python excel2json.py excel json   
 
 
-##Client 架构  
-###一、客户端与战斗服同一套代码  
+## Client架构  
+### 一、客户端与战斗服同一套代码  
 * 1.带视图：通过BattleUpdate内的update驱动gamecontroler中的startloop。  
 * 2.纯跑逻辑：通过操作序列和startloop帧数走逻辑。  
 
 
-
-###二、相关代码解读  
+  
+### 二、相关代码解读  
     BattleControler -- 战斗控制器，战斗的入口  
     GameControler -- 游戏控制器，负责游戏的调度  
-    LogicControler -- 逻辑控制器，负责游戏逻辑的处理  
-    LevelInfo -- 关卡数据，用于创建角色等  
+    LogicControler -- 逻辑控制器，负责游戏逻辑的处理 
+    StaControl -- 战斗统计    
+    Formula -- 伤害公式  
+    AttackChooseType -- 获取技能攻击对象     
+    LevelInfo -- 关卡数据，用于创建角色等 
     Fight -- 战斗内变量、枚举等  
     BattleServer -- 战斗内与网络相关  
     BattleRandom -- 战斗随机种子、随机数获取  

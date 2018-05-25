@@ -13,6 +13,8 @@ var ModelBasic = function (data,exData,controler) {
 	this.controler = controler;
 	//一开始上来，有大招就放大招,然后每隔两回合放一次大招
 	this.currIdx = 0;
+	// 用于存储的唯一id
+	this._sgId = this.hId + "_"+this.camp+"_"+controler.handIdx;
 	// this.printInfo = function() {
 	// 	var date = new Date();
 	// 	console.log("ModelHero=Info name:",self._data," createTime:",date);

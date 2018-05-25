@@ -42,10 +42,12 @@ var ModelHero = function (data,exData,controler) {
 	this.doRealAttack = function (chooseArr,atkData,skill) {
 		for (var key in chooseArr) {
 			var targetModel = chooseArr[key];
-			// SG.LogsControler.dump(targetModel._data,"what???");
-		SG.LogsControler.echo(this.camp,"阵营",this.posIdx,"位置的",this.hId,"角色",
-			"使用",skill.sid,"技能","攻击 ",targetModel.camp,"阵营的",
-			targetModel.posIdx,"位置",targetModel.hId,"玩家");
+			// 获取伤害
+			var dmgInfo = SG.Formula.getSkilDamage(this,targetModel,skill);
+			
+			SG.LogsControler.echo(this.camp,"阵营",this.posIdx,"位置的",this.hId,"角色",
+				"使用",skill.sid,"技能","攻击 ",targetModel.camp,"阵营的",
+				targetModel.posIdx,"位置",targetModel.hId,"玩家");
 		};
 	}
 }

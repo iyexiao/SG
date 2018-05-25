@@ -14,6 +14,7 @@ var _files = [
 	"battle/LogicControler",
 	"battle/GameControler",
 	"battle/AttackChooseType",
+	"battle/Formula",
 	"common/LogsControler",
 	"common/GameData",
 	"common/FuncUtil",
