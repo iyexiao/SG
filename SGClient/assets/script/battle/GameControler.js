@@ -16,9 +16,10 @@ var GameControler = function (battleInfo) {
 	var _callFuncArrCache = [];//回调队列缓存
 	var _isCallFuncing = false;//是否在进行队列遍历
 	var _atkModelArr = [];//战斗中的攻击序列
-	this.handIdx = 0;//帧序列数[自增，用于记录当前执行到的步骤]
+	this.frame = 0;//帧序列数[自增，用于记录当前执行到的步骤]
 	this.levelInfo = new SG.LevelInfo(battleInfo,this);
 	this.server = new SG.BattleServer(this);
+	this.handle = new SG.HandleControler(this);
 	this.logic = new SG.LogicControler(this);
 	// 开始战斗
 	this.enterBattle = function () {
@@ -191,7 +192,7 @@ var GameControler = function (battleInfo) {
 	// 真正的更新循环
 	this.runBySpeedUpdate=function (dt) {
 		// SG.LogsControler.echo("按照速率刷新游戏",dt);
-		this.handIdx += 1;
+		this.frame += 1;
 		this.updateCallFunc()
 		this.logic.updateFrame();
 

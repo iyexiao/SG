@@ -20,6 +20,7 @@
     BattleControler -- 战斗控制器，战斗的入口  
     GameControler -- 游戏控制器，负责游戏的调度  
     LogicControler -- 逻辑控制器，负责游戏逻辑的处理 
+    HandleControler -- 操作控制器，负责接收和执行网络返回的操作
     StaControl -- 战斗统计    
     Formula -- 伤害公式  
     AttackChooseType -- 获取技能攻击对象     

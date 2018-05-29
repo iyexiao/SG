@@ -6,11 +6,7 @@
 var LogicControler = function (controler) {
 	const HandleType = SG.Fight.HandleType;
 	var _controler = controler;
-	var _handMap = {};
-	this.onReceive = function (args) {
-		// 执行一条操作
-		this.doOneHandler(args);
-	};
+	// 执行一条操作
 	this.doOneHandler = function (hInfo) {
 		switch(hInfo.t){
 			case HandleType.upHero:
