@@ -15,6 +15,9 @@ var LogicControler = function (controler) {
 			case HandleType.resCmpl:
 				_controler.enterBattleReady(hInfo);
 				break;
+			case HandleType.heroAtk:
+				this.doOneHeroAttack(hInfo);
+				break;
 			default:
 			SG.LogsControler.echoError("错误的操作类型",hInfo.t);
 		}
@@ -39,6 +42,17 @@ var LogicControler = function (controler) {
 	// 做攻击序列ai
 	this.doFightAi = function () {
 		var fightHero = _controler.getAttackHeroModel();//获取将要攻击的人
+		//要发送一个网络攻击操作，所以设置为网络等待，等待回操作后操作在设置为战斗状态
+		_controler.updateBattleState(SG.Fight.battleState.netWait);
+        _controler.server.sendHeroAttack({p:fightHero.posIdx,c:fightHero.camp});
+	};
+	this.doOneHeroAttack = function (info) {
+		_controler.updateBattleState(SG.Fight.battleState.battle);
+		var fightHero = _controler.getHeroByCampPos(info.c,info.p);
+		if (!fightHero) {
+			SG.LogsControler.echoError("未获取到对应的英雄",info.c,info.p);
+			return
+		};
 		var _frame = fightHero.doAttack();
 		var skill = fightHero.getCurrentSkill();
 		_controler.pushOneCallFunc(_frame,SG.Fight.callFuncType.logic,
@@ -47,7 +61,7 @@ var LogicControler = function (controler) {
 		if (!SERVICE_DUMMY) {
 			G_EVENT.emit(SG.SGEvent.BATTLE_HERO_ATTACK,{heroModel:fightHero});
 		};
-	};
+	}
 	// 攻击结束
 	this.onAttackComplete = function (params) {
 		// 身上buff计数 -1

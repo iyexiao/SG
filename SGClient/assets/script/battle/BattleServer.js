@@ -12,16 +12,21 @@ var BattleServer = function (controler) {
 	this.sendLoadResComplete = function (args) {
 		args.t = HandleType.resCmpl;
 		this.sendOneHandle(args);
-	}
+	};
 	// {t:操作类型type h:上阵hid p:上阵位置pos,c:阵营camp}
 	this.sendUpHero = function (args) {
 		args.t = HandleType.upHero;
+		this.sendOneHandle(args);
+	};
+	// {p:攻击角色位置，c:阵营camp}
+	this.sendHeroAttack = function (args) {
+		args.t = HandleType.heroAtk;
 		this.sendOneHandle(args);
 	}
 	// 发送一条操作数据
 	this.sendOneHandle = function (args) {
 		var msg = SG.SGArray.deepCopy(args);
-		msg.frame = _controler.frame;
+		msg.frame = _controler.frame;//这个是为了当网络回来的时候，重新赋值frame保证双端同步
 		msg.idx = _idx;
 		if (SG.BattleControler.checkIsPve()) {
 			// SG.LogsControler.dump(msg,"===msg===:");

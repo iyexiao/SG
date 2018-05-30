@@ -28,6 +28,7 @@ Fight.userType = {
 Fight.HandleType = {
 	resCmpl:1,//资源加载完成(开始进入战斗)
 	upHero:2,//上阵一个伙伴
+	heroAtk:3,//角色上去攻击
 };
 // 回调的类型
 Fight.callFuncType = {
@@ -73,6 +74,12 @@ Fight.battleTrigger = {
 	onKill:5,//击杀敌人时，只对击杀者
 	onAddHero:6,//当添加一名英雄上场时
 	onBrokRoad:7,//破路时
+};
+Fight.battleState = {
+	none:0,//空闲状态
+	ready:1,//战斗前准备
+	battle:2,//战斗中
+	netWait:3,//网络等待
 }
 
 module.exports = Fight;

@@ -17,6 +17,7 @@ var GameControler = function (battleInfo) {
 	var _isCallFuncing = false;//是否在进行队列遍历
 	var _atkModelArr = [];//战斗中的攻击序列
 	this.frame = 0;//帧序列数[自增，用于记录当前执行到的步骤]
+	this.state = SG.Fight.battleState.none; //一开始是战斗空闲状态
 	this.levelInfo = new SG.LevelInfo(battleInfo,this);
 	this.server = new SG.BattleServer(this);
 	this.handle = new SG.HandleControler(this);
@@ -71,6 +72,7 @@ var GameControler = function (battleInfo) {
 	// 准备开始战斗
 	this.enterBattleReady = function (hInfo) {
 		this.updateGameState(SG.Fight.gameStep.ready);
+		this.updateBattleState(SG.Fight.battleState.ready);
 		if (!SERVICE_DUMMY) {
 			if (SG.BattleControler.checkIsPve()) {
 				this.logic.doPickUpHeroOnReady();
@@ -105,6 +107,10 @@ var GameControler = function (battleInfo) {
 		};
 		return tmpArr;
 	};
+	// 根据阵营和位置获取对应的英雄
+	this.getHeroByCampPos = function (camp,pos) {
+		return _campArr[camp][pos];
+	}
 	// 上阵一个英雄
 	this.upOneHero = function (hInfo) {
 		this.updateHandCardArrByCamp(hInfo.c,hInfo.h);
@@ -165,6 +171,7 @@ var GameControler = function (battleInfo) {
 	}
 	// 真正开始战斗
 	this.startRealBattle = function () {
+		this.updateBattleState(SG.Fight.battleState.battle);
 		this.logic.doFightAi();
 	}
 	this.onExitBattle = function () {
@@ -192,11 +199,20 @@ var GameControler = function (battleInfo) {
 	// 真正的更新循环
 	this.runBySpeedUpdate=function (dt) {
 		// SG.LogsControler.echo("按照速率刷新游戏",dt);
-		this.frame += 1;
+		// 只有战斗状态的时候，frame才会刷新，否则都是在执行无效的frame
+		if (this.state == SG.Fight.battleState.battle ||
+			this.state == SG.Fight.battleState.ready) {
+			this.frame += 1;
+		};
 		this.updateCallFunc()
 		this.logic.updateFrame();
 
 	};
+	this.updateBattleState= function (state) {
+		if (this.state != state) {
+			this.state = state;
+		};
+	}
 	// 根据枚举获取对应的对象
 	this._getFuncByType = function (funcType) {
 		var result = null;

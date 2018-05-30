@@ -44,11 +44,11 @@ var HandleControler = function (controler) {
 			_currentHandleIdx += 1;
 			return
 		};
-		if (handleInfo.frame < _controler.frame) {
-			SG.LogsControler.echo("这个操作过时了",handleInfo.tag);
-			_currentHandleIdx += 1;
-			return
-		};
+		// if (handleInfo.frame < _controler.frame) {
+		// 	SG.LogsControler.echo("这个操作过时了",handleInfo.tag);
+		// 	_currentHandleIdx += 1;
+		// 	return
+		// };
 		_currentHandleIdx += 1;
 		_doHandleMap[handleInfo.tag] = true;
 		//TODO：加速器校验
