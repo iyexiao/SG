@@ -13,7 +13,7 @@ var LogicControler = function (controler) {
 				_controler.upOneHero(hInfo);
 				break;
 			case HandleType.resCmpl:
-				_controler.enterBattleReady(hInfo);
+				_controler.enterBattleReady();
 				break;
 			case HandleType.heroAtk:
 				this.doOneHeroAttack(hInfo);

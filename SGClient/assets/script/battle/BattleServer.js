@@ -33,7 +33,14 @@ var BattleServer = function (controler) {
 			// 如果是单人战斗，则原封不动的返回
 			_controler.handle.receiveOneHandle(msg);
 		}else{
-
+			if (!SERVICE_DUMMY) {
+				// websocket发送操作
+                var params = {info:msg,t:SG.Fight.MsgType.handle};
+                if (args.t == HandleType.resCmpl) {
+                	params.t = SG.Fight.MsgType.resComplete;//资源加载完成的操作不一样
+                };
+                window.G_WS.send(JSON.stringify(params));
+			}
 		}
 		_idx += 1;//每发送一条操作序列，序列号都会自增
 	}

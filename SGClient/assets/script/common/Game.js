@@ -22,6 +22,6 @@ cc.Class({
         });
     },
     update (dt) {
-        cc.log("aa===,",dt);
+        // cc.log("aa===,",dt);
     },
 });

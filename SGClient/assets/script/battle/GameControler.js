@@ -24,19 +24,21 @@ var GameControler = function (battleInfo) {
 	this.logic = new SG.LogicControler(this);
 	// 开始战斗
 	this.enterBattle = function () {
-		if (_battleInfo.gameMode == SG.Fight.gameMode.pve) {
-			// 开始战斗
-		}else if(_battleInfo.gameMode == SG.Fight.gameMode.pvp){
-
-		};
-
 		// 初始化两边手牌
 		for (var i = 0; i <= 1; i++) {
 			for (var j = 0; j < 4; j++) {
 				this.updateHandCardArrByCamp(i);
 			};
 		};
-		this.server.sendLoadResComplete({uId:this.levelInfo.getUserId()});
+		if (!SERVICE_DUMMY) {
+			if (_battleInfo.gameMode == SG.Fight.gameMode.pve) {
+				// 发送资源加载完成
+				this.server.sendLoadResComplete({uId:this.levelInfo.getUserId()});
+			}else{
+				// 多人的时候
+				G_EVENT.emit(SG.SGEvent.BATTLE_INIT,this);
+			};
+		}
 	};
 	//更新手牌
 	this.updateHandCardArrByCamp = function (camp,oldId) {
@@ -70,7 +72,7 @@ var GameControler = function (battleInfo) {
 		};
 	}
 	// 准备开始战斗
-	this.enterBattleReady = function (hInfo) {
+	this.enterBattleReady = function () {
 		this.updateGameState(SG.Fight.gameStep.ready);
 		this.updateBattleState(SG.Fight.battleState.ready);
 		if (!SERVICE_DUMMY) {

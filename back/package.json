@@ -1,0 +1,18 @@
+{
+    "name": "SGServer",
+    "version": "0.0.0",
+    "description": "SGServer",
+    "main": "app.js",
+    "author": {
+        "name": "YeXiao",
+        "email": ""
+    },
+    "dependencies": {
+        "express": "^4.12.4",
+        "shortid": "^2.2.2",
+        "socket.io": "^1.3.5"
+    },
+    "scripts": {
+        "start": "node app.js"
+    }
+}

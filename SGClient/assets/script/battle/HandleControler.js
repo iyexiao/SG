@@ -30,7 +30,8 @@ var HandleControler = function (controler) {
 		if (handleInfo.idx == _currentHandleIdx + 1) {
 			this.onReceive(handleInfo);
 		}else{
-			SG.LogsControler.echo("操作落后了",handleInfo.idx);
+			SG.LogsControler.dump(handleInfo,"===")
+			SG.LogsControler.echo("操作落后了",handleInfo.idx,_currentHandleIdx);
 			this.checkNeedQuickOrGet(handleInfo.idx);
 		};
 	};

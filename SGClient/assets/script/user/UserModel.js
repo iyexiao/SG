@@ -7,7 +7,8 @@ var _testData = {
 		battleInfo:{
 			battleId:100,
 			randoomSeed:52695097,
-			gameMode:1,
+			// gameMode:1,//单人
+			gameMode:2,//多人
 			uId:1001,
 			user:[
 				{uId:1001,uType:1,camp:0,heroArr:[

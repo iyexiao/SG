@@ -80,6 +80,18 @@ Fight.battleState = {
 	ready:1,//战斗前准备
 	battle:2,//战斗中
 	netWait:3,//网络等待
+};
+// 发送的消息序列
+Fight.MsgType = {
+	init:0,//初始化连接
+	resComplete:1,//资源加载完成
+	handle:2,//战斗操作序列
+};
+// 战斗服广播
+Fight.NotifyType = {
+	roomComplete:0,//初始化房间完成
+	startBattle:1,//开始战斗广播
+	handle:2,//双方操作广播
 }
 
 module.exports = Fight;
