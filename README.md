@@ -38,7 +38,7 @@
 	--controler	系统相关控制器  
 	--view	视图相关表现  
 * user 用户先关数据  
-### 四、关于多人[TODO:这只是个简易的架构]  
+### 四、关于多人(TODO:这只是个简易的架构])  
 * 服务器代码在SGServer下，采用node.js+WebSocket，在终端运行服务端node index.js即可  
-* 前端代码通过修改user/UserMode.js下的gameMode即可变成多人
-3 前端通过battle/view/BattleUpdate.js里面创建WebSocket来实现多人，代码单人多人都已经做好架构
+* 前端代码通过修改user/UserMode.js下的gameMode即可变成多人  
+* 前端通过battle/view/BattleUpdate.js里面创建WebSocket来实现多人，代码单人多人都已经做好架构  
