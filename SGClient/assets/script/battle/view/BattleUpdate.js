@@ -32,6 +32,7 @@ cc.Class({
         window.G_WS = new WebSocket("ws://localhost:3000");
         window.G_WS.onopen = function (msg) {
             cc.log("connected success!!");
+            // TODO:这些操作应该放在外面比较好，现在放这里流程上单人和多人有点不一样
             var battleInfo = SG.UserModel.getBattleInfo();
             var params = {battleInfo:battleInfo,t:SG.Fight.MsgType.init};
             window.G_WS.send(JSON.stringify(params));
